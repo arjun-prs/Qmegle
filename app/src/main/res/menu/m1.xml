@@ -2,12 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/edMenu1"
-        android:title="Archive"/>
-
-    <item android:id="@+id/edMenu2"
         android:title="Export"/>
 
-    <item android:id="@+id/edMenu3"
+    <item android:id="@+id/edMenu2"
         android:title="About" />
 
 </menu>

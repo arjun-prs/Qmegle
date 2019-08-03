@@ -12,8 +12,7 @@
         android:id="@+id/edTVTitle2"
         android:text="SIGN UP"
         android:textSize="68sp"
-        android:textAlignment="center"
-        android:textColor="@color/colorBlue"/>
+        android:textAlignment="center" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
