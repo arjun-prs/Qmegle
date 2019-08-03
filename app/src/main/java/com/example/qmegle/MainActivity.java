@@ -32,8 +32,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view)
     {
-        Intent i = new Intent(this,chat.class);
-        i.putExtra("name",e1.getText().toString());
-        startActivity(i);
+        if(e1.getText().toString().equals(""))
+        {
+            Toast.makeText(this, "No entry without a nickname! :P", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Intent i = new Intent(this,chat.class);
+            i.putExtra("name",e1.getText().toString());
+            startActivity(i);
+        }
     }
 }
