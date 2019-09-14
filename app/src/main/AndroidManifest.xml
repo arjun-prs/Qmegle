@@ -11,11 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".info" />
-        <activity android:name=".chat" />
-        <activity android:name=".Second_Page" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".info"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".chat"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Splash"
+            android:screenOrientation="portrait"
             android:theme="@style/AppFullScreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
