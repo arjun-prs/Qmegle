@@ -124,7 +124,7 @@ public class chat extends AppCompatActivity implements View.OnClickListener {
 
             String id = databaseChat.push().getKey();    //creates a unique string (key) inside the node
             Message m1 = new Message(id, sender, smsg.getText().toString());
-            Message m = new Message(id, sender, m1.encrypt());
+            m1.encrypt();
             databaseChat.child(id).setValue(m1);
             smsg.setText("");
             /*lv.post(new Runnable() {
@@ -160,8 +160,6 @@ public class chat extends AppCompatActivity implements View.OnClickListener {
         }
         return true;
     }
-
-
 }
 
 
