@@ -49,6 +49,7 @@ public class chat extends AppCompatActivity implements View.OnClickListener {
                 for(DataSnapshot chatSnapshot: dataSnapshot.getChildren())      //enhanced for loop that iterates through all children in data snapshot
                 {
                     Message m = chatSnapshot.getValue(Message.class);
+                    m.decrypt();
                     messageList.add(m.getName() + ": " + m.getMessage());
                 }
                 ArrayAdapter ad = new ArrayAdapter(getApplicationContext(),android.R.layout.simple_list_item_1,messageList);
@@ -122,8 +123,9 @@ public class chat extends AppCompatActivity implements View.OnClickListener {
             smsg.requestFocus();*/
 
             String id = databaseChat.push().getKey();    //creates a unique string (key) inside the node
-            Message m = new Message(id, sender, smsg.getText().toString());
-            databaseChat.child(id).setValue(m);
+            Message m1 = new Message(id, sender, smsg.getText().toString());
+            Message m = new Message(id, sender, m1.encrypt());
+            databaseChat.child(id).setValue(m1);
             smsg.setText("");
             /*lv.post(new Runnable() {
                 @Override
@@ -158,6 +160,8 @@ public class chat extends AppCompatActivity implements View.OnClickListener {
         }
         return true;
     }
+
+
 }
 
 
