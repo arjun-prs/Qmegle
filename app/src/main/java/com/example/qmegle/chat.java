@@ -161,6 +161,3 @@ public class chat extends AppCompatActivity implements View.OnClickListener {
         return true;
     }
 }
-
-
-

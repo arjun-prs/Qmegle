@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     {
         if(e1.getText().toString().equals(""))
         {
-            Toast.makeText(this, "No entry without a nickname! :P", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "No entry without a nickname! \uD83D\uDE1B", Toast.LENGTH_SHORT).show();
         }
         else
         {
