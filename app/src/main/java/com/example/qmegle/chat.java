@@ -1,5 +1,6 @@
 package com.example.qmegle;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -27,8 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class chat extends AppCompatActivity implements View.OnClickListener {
-
+public class chat extends AppCompatActivity implements View.OnClickListener
+{
     ImageButton send;
     EditText smsg;
     //LinearLayout l1;
@@ -36,12 +37,18 @@ public class chat extends AppCompatActivity implements View.OnClickListener {
     //ScrollView scrollView;
     ListView lv;
     List<String> messageList;
+    int userCount;
+    DatabaseReference databaseChat;
+    DatabaseReference databaseUserCount;
+    ProgressDialog waitDialog;
+    String key;
 
     @Override
     protected void onStart()
     {
         super.onStart();
-        databaseChat.addValueEventListener(new ValueEventListener() {
+        databaseChat.addValueEventListener(new ValueEventListener()
+        {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot)
             {
@@ -61,9 +68,33 @@ public class chat extends AppCompatActivity implements View.OnClickListener {
             {
             }
         });
-    }
 
-    DatabaseReference databaseChat;
+        databaseUserCount.addValueEventListener(new ValueEventListener()
+        {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+            {
+                userCount = Integer.parseInt(dataSnapshot.getValue().toString());
+                if (userCount==1)
+                {
+                    //Toast.makeText(getApplicationContext(),"User Count: "+userCount+" is ODD",Toast.LENGTH_SHORT).show();
+                    waitDialog.setMessage("Finding you a stranger.");
+                    waitDialog.setIndeterminate(true);
+                    waitDialog.setCancelable(false);
+                    waitDialog.show();
+                }
+                else
+                {
+                    waitDialog.dismiss();
+                    //Toast.makeText(getApplicationContext(),"User Count: "+userCount+" is EVEN",Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError)
+            {
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -71,26 +102,28 @@ public class chat extends AppCompatActivity implements View.OnClickListener {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.chat);
-
-        databaseChat = FirebaseDatabase.getInstance().getReference("chat");
-
         send = findViewById(R.id.sendbutton);
         send.setOnClickListener(this);
         smsg = findViewById(R.id.editMessage);
         //l1 = findViewById(R.id.linearLayout);             //When using text views inside scroll view for chat bubbles
         Bundle b = getIntent().getExtras();
         sender = b.getString("name");
+        key = b.getString("key");
         //scrollView = findViewById(R.id.scrollView);       //When using text views inside scroll view for chat bubbles
         lv = findViewById(R.id.listView);
         messageList = new ArrayList<>();
+        waitDialog = new ProgressDialog(chat.this);
+        databaseChat = FirebaseDatabase.getInstance().getReference(key).child("chat");
+        databaseUserCount = FirebaseDatabase.getInstance().getReference(key).child("count");
     }
 
-    /*@Override
-    protected void onDestroy()
+    @Override
+    protected void onStop()
     {
-        super.onDestroy();
+        super.onStop();
         databaseChat.removeValue();
-    }*/
+        databaseUserCount.setValue(--userCount);
+    }
 
     public void onClick(View view)
     {
@@ -121,7 +154,6 @@ public class chat extends AppCompatActivity implements View.OnClickListener {
             });
             smsg.setText("");
             smsg.requestFocus();*/
-
             String id = databaseChat.push().getKey();    //creates a unique string (key) inside the node
             Message m1 = new Message(id, sender, smsg.getText().toString());
             m1.encrypt();
