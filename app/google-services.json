@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "390482580635",
+    "firebase_url": "https://qmegle.firebaseio.com",
+    "project_id": "qmegle",
+    "storage_bucket": "qmegle.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:390482580635:android:b0837d2bec782cbf",
+        "android_client_info": {
+          "package_name": "com.example.qmegle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "390482580635-865je2pr27uln3at1pod9b11lip2ovpr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.qmegle",
+            "certificate_hash": "1eb0fdf61b2815b5557bc059106bfae12c43d30c"
+          }
+        },
+        {
+          "client_id": "390482580635-2jpdvbehij8nnnp0ugluf4775jt6ovka.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.qmegle",
+            "certificate_hash": "af8e01147e64777096fac05f74243b870c5d6bdf"
+          }
+        },
+        {
+          "client_id": "390482580635-67ofsh3h1spmmar8qbdqne3uevohee3r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkZG7L3OQ9X0Rr7fOV3_PDKM2CxTeWBkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "390482580635-67ofsh3h1spmmar8qbdqne3uevohee3r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

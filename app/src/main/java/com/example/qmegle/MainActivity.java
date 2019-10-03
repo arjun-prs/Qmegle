@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener
 {
+    TextView t1,t2,t3;
     EditText e1;
     Button b1;
     DatabaseReference databaseChat;
@@ -40,6 +41,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         e1 = findViewById(R.id.editText);
         b1 = findViewById(R.id.button);
         b1.setOnClickListener(this);
+        t1 = findViewById(R.id.title);
+        t2 = findViewById(R.id.textView2);
+        t3 = findViewById(R.id.textView3);
+        t1.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Toast.makeText(getApplicationContext(),"User Count = "+userCount,Toast.LENGTH_SHORT).show();
+            }
+        });
+        /*t2.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                chat.child("count").setValue(userCount+1);
+                Toast.makeText(getApplicationContext(),"User Count = "+userCount,Toast.LENGTH_SHORT).show();
+            }
+        });
+        t3.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                chat.child("count").setValue(userCount-1);
+                Toast.makeText(getApplicationContext(),"User Count = "+userCount,Toast.LENGTH_SHORT).show();
+            }
+        });*/
     }
 
     @Override
